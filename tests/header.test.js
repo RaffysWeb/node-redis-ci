@@ -1,4 +1,5 @@
 const Page = require("./helpers/page");
+const puppeteer = require("puppeteer");
 
 let page;
 
