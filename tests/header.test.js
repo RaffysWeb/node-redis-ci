@@ -6,11 +6,12 @@ let page;
 describe("renders without crashing", () => {
   test("we view the welcome h1 header", async () => {
     let browser = await puppeteer.launch({
-      headless: true
+      headless: true,
+      args: ["--no-sandbox"]
     });
     let page = await browser.newPage();
 
-    await page.goto("http://localhost:3030");
+    await page.goto("http://localhost:3000");
     const text = await page.getContentsOf("a.brand-logo");
 
     expect(text).toEqual("Blogster");
