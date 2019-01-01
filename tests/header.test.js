@@ -6,7 +6,7 @@ let page;
 describe("renders without crashing", () => {
   test("we view the welcome h1 header", async () => {
     let browser = await puppeteer.launch({
-      headless: false
+      headless: true
       // args: ["--no-sandbox"]
     });
     let page = await browser.newPage();
