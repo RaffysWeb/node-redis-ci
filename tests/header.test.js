@@ -12,10 +12,10 @@ describe("renders without crashing", () => {
     let page = await browser.newPage();
 
     await page.goto("http://localhost:3000");
-    const text = await page.getContentsOf("a.brand-logo");
+    await page.waitForSelector(".welcome-message");
 
-    expect(text).toEqual("Blogster");
-    browser.close();
+    const header = await page.$eval("a.brand-logo", e => e.innerHTML);
+    expect(header).toEqual("Blogster");
   }, 16000);
 });
 
