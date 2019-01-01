@@ -10,7 +10,7 @@ env:
   - NODE_ENV=ci
   - PORT=3000
 before_script:
-  - nohup npm run start &
+  - npm run start &
 cache:
   directories:
     - node_modules
