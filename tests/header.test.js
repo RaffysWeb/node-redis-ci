@@ -2,33 +2,48 @@ const Page = require("./helpers/page");
 
 let page;
 
-beforeEach(async () => {
-  page = await Page.build();
-  await page.goto("http://localhost:3000");
+describe("renders without crashing", () => {
+  test("we view the welcome h1 header", async () => {
+    let browser = await puppeteer.launch({
+      headless: true
+    });
+    let page = await browser.newPage();
+
+    await page.goto("http://localhost:3030");
+    const text = await page.getContentsOf("a.brand-logo");
+
+    expect(text).toEqual("Blogster");
+    browser.close();
+  }, 16000);
 });
 
-afterEach(async () => {
-  await page.close();
-});
+// beforeEach(async () => {
+//   page = await Page.build();
+//   await page.goto("http://localhost:3000");
+// });
 
-test("The header has the correct text", async () => {
-  const text = await page.getContentsOf("a.brand-logo");
+// afterEach(async () => {
+//   await page.close();
+// });
 
-  expect(text).toEqual("Blogster");
-});
+// test("The header has the correct text", async () => {
+//   const text = await page.getContentsOf("a.brand-logo");
 
-test("clicking login launches oauth", async () => {
-  await page.click(".right a");
+//   expect(text).toEqual("Blogster");
+// });
 
-  const url = await page.url();
+// test("clicking login launches oauth", async () => {
+//   await page.click(".right a");
 
-  expect(url).toMatch(/accounts\.google\.com/);
-});
+//   const url = await page.url();
 
-test("When signed in, shows logout button", async () => {
-  await page.login();
+//   expect(url).toMatch(/accounts\.google\.com/);
+// });
 
-  const text = await page.$eval('a[href="/auth/logout"]', el => el.innerHTML);
+// test("When signed in, shows logout button", async () => {
+//   await page.login();
 
-  expect(text).toEqual("Logout");
-});
+//   const text = await page.$eval('a[href="/auth/logout"]', el => el.innerHTML);
+
+//   expect(text).toEqual("Logout");
+// });
