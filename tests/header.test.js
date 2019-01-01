@@ -12,7 +12,7 @@ describe("renders without crashing", () => {
     let page = await browser.newPage();
 
     await page.goto("http://localhost:3000");
-    await page.waitForSelector(".welcome-message");
+    await page.waitForSelector(".a.brand-logo");
 
     const header = await page.$eval("a.brand-logo", e => e.innerHTML);
     expect(header).toEqual("Blogster");
