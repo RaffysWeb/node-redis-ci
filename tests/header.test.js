@@ -6,13 +6,13 @@ let page;
 describe("renders without crashing", () => {
   test("we view the welcome h1 header", async () => {
     let browser = await puppeteer.launch({
-      headless: true,
-      args: ["--no-sandbox"]
+      headless: false
+      // args: ["--no-sandbox"]
     });
     let page = await browser.newPage();
 
     await page.goto("http://localhost:3000");
-    await page.waitForSelector(".a.brand-logo");
+    await page.waitForSelector("a.brand-logo");
 
     const header = await page.$eval("a.brand-logo", e => e.innerHTML);
     expect(header).toEqual("Blogster");
