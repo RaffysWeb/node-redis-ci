@@ -5,8 +5,7 @@ const userFactory = require("../factories/userFactory");
 class CustomPage {
   static async build() {
     const browser = await puppeteer.launch({
-      headless: true,
-      args: ["--no-sandbox", "--disable-setuid-sandbox"]
+      headless: true
     });
 
     const page = await browser.newPage();
