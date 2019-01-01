@@ -28,6 +28,6 @@ install:
   - npm install
   - npm run build
 before_script:
-  - nohup npm run start &
+  - npm run start &
 script:
   - npm run test
